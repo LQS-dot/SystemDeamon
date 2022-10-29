@@ -1,0 +1,14 @@
+[Unit]
+Description=Json RPC Service
+After=network.target
+
+[Service]
+Restart=on-failure
+RestartSec=30
+Type=simple
+User=root
+#StandardError=file:/opt/smc/monitor/log/error.out
+ExecStart=/usr/bin/python3 /opt/smc/hardware/json_rpc/src/json_rpc/server.py
+
+[Install]
+WantedBy=multi-user.target

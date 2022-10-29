@@ -1,0 +1,16 @@
+[Unit]
+Description=SMC Monitor Service
+After=network.target
+
+[Service]
+Restart=on-failure
+RestartSec=30
+Type=forking
+# User=smc
+Environment="LD_LIBRARY_PATH=/opt/smc/lib:/opt/smc/monitor/lib/"
+#StandardError=file:/opt/smc/monitor/log/error.out
+ExecStart=/opt/smc/monitor/bin/smc_monitor start
+ExecStop=/opt/smc/monitor/bin/smc_monitor stop
+
+[Install]
+WantedBy=multi-user.target

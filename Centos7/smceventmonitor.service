@@ -1,0 +1,18 @@
+[Unit]
+Description=SMC Eventmonitor Service
+After=network.target
+After=elasticsearch.service
+
+[Service]
+Restart=on-failure
+RestartSec=30
+Type=simple
+User=smc
+WorkingDirectory=/opt/smc/eventmonitor
+EnvironmentFile=/opt/smc/eventmonitor/config/systemd-env
+StandardOutput=file:/opt/data/logs/eventmonitor/eventMonitor.log
+ExecStartPre=/usr/bin/python2 /opt/smc/hardware/sbin/create-systemd-env-for-em.py
+ExecStart=/usr/bin/java $JVM_OPTS -classpath $CLASSPATH com.juminfo.smc.MainRunner
+
+[Install]
+WantedBy=multi-user.target

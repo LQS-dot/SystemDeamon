@@ -1,0 +1,16 @@
+[Unit]
+Description=SMC RespCenter Service
+After=network.target
+
+[Service]
+#Restart=on-failure
+#RestartSec=30
+Type=forking
+User=smc
+Environment="LD_LIBRARY_PATH=/opt/smc/lib"
+#StandardError=file:/opt/smc/monitor/log/error.out
+ExecStart=/opt/smc/kernel/bin/resp_center start
+ExecStop=/opt/smc/kernel/bin/resp_center stop
+
+[Install]
+WantedBy=multi-user.target

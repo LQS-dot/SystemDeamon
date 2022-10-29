@@ -1,0 +1,16 @@
+[Unit]
+Description=Collector Service Controller
+After=network.target
+
+[Service]
+#Restart=on-failure
+#RestartSec=30
+Type=forking
+# User=smc
+Environment='LD_LIBRARY_PATH=/opt/smc/lib'
+ExecStart=/opt/smc/sensor/bin/collect_controller start
+ExecStop=/opt/smc/sensor/bin/collect_controller stop
+ExecStopPost=/opt/smc/sensor/bin/collector stop
+
+[Install]
+WantedBy=multi-user.target 

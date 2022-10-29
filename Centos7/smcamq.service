@@ -1,0 +1,17 @@
+[Unit]
+Description=SMC ActiveMq Service
+After=network.target
+
+[Service]
+Restart=on-failure
+RestartSec=30
+Type=forking
+User=smc
+Environment="LD_LIBRARY_PATH=/opt/smc/lib"
+#StandardError=file:/opt/smc/monitor/log/error.out
+ExecStartPre=/bin/rm -f /opt/smc/mq/activemq/data/kahadb/*
+ExecStart=/opt/smc/mq/activemq/bin/activemq start
+ExecStop=/opt/smc/mq/activemq/bin/activemq stop
+
+[Install]
+WantedBy=multi-user.target

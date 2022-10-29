@@ -1,0 +1,15 @@
+[Unit]
+Description=SMC Scan Service
+After=network.target
+
+[Service]
+Restart=on-failure
+RestartSec=30
+Type=forking
+# User=smc
+Environment="export LD_LIBRARY_PATH=/opt/smc/lib/scanner/lib64/:/opt/smc/lib/scanner/lib/:/usr/lib64/heimdal/:/opt/atomic:/usr/lib64/heimdal/:/opt/atomic"
+# StandardError=file:/opt/smc/monitor/log/error.out
+ExecStart=/usr/sbin/jmscannersd
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=SMC Scan Service
+After=network.target
+
+[Service]
+Restart=on-failure
+RestartSec=300
+# Environment="LD_LIBRARY_PATH=/opt/smc/lib/scanner/lib/"
+ExecStart=@/opt/nessus/sbin/nessus-service "/opt/nessus/sbin/nessus-service"
+
+[Install]
+WantedBy=multi-user.target

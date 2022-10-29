@@ -1,0 +1,11 @@
+[Unit]
+Description=Get System Error
+After=network.target
+
+[Service]
+Restart=no
+Type=oneshot
+ExecStart=/opt/smc/web/tomcat/bin/getsyserr
+
+[Install]
+WantedBy=multi-user.target 

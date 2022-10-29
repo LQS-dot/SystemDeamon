@@ -1,0 +1,16 @@
+[Unit]
+Description=SMC Web Service
+After=network.target
+
+[Service]
+Restart=on-failure
+RestartSec=30
+Type=simple
+User=smc
+Environment="LD_LIBRARY_PATH=/opt/smc/lib"
+#StandardError=file:/opt/smc/monitor/log/error.out
+ExecStart=/opt/smc/web/bdsec/bdsec.sh debug
+#ExecStop=/opt/smc/web/bdsec/bdsec.sh stop
+
+[Install]
+WantedBy=multi-user.target

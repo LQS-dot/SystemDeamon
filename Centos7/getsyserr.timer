@@ -1,0 +1,9 @@
+[Unit]
+Description=Get System Error Timer
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=10min
+
+[Install]
+WantedBy=timers.target

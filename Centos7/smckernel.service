@@ -1,0 +1,16 @@
+[Unit]
+Description=SMC Kernel Service
+After=network.target
+
+[Service]
+#Restart=on-failure
+#RestartSec=30
+Type=oneshot
+User=smc
+Environment="LD_LIBRARY_PATH=/opt/smc/lib:/opt/smc/kernel/lib/"
+StandardError=file:/opt/smc/storage/log/kernel.log
+ExecStart=/opt/smc/kernel/sbin/smc_kernel.sh start
+ExecStop=/opt/smc/kernel/sbin/smc_kernel.sh stop
+
+[Install]
+WantedBy=multi-user.target

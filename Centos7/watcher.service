@@ -1,0 +1,13 @@
+[Unit]
+Description=Watchdog for elasticsearch
+After=elasticsearch.service
+
+[Service]
+Restart=no
+Type=forking
+ExecStart=/opt/smc/hardware/sbin/watcher.py
+ExecStop=/opt/smc/hardware/sbin/watcher.py kill
+PIDFile=/var/run/watcher.pid
+
+[Install]
+WantedBy=multi-user.target 

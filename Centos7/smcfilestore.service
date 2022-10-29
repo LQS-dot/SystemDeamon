@@ -1,0 +1,17 @@
+[Unit]
+Description=SMC File Storage Service
+After=network.target
+After=elasticsearch.service
+
+[Service]
+#Restart=on-failure
+#RestartSec=30
+Type=forking
+User=smc
+Environment="LD_LIBRARY_PATH=/opt/smc/lib:/opt/smc/storage/lib"
+StandardError=file:/opt/smc/storage/log/error.output
+ExecStart=/opt/smc/storage/bin/file_store start
+ExecStop=/opt/smc/storage/bin/file_store stop
+
+[Install]
+WantedBy=multi-user.target
