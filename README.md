@@ -1,5 +1,5 @@
 # SystemDeamon
-**Centos6-SystemDeamon --> systemd**
+**SystemDeamon --> systemd**
 
 ### Centos6.9
   initctl:
